@@ -38,3 +38,4 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://www.sigaventures.com/sitemap.xml
+Sitemap: https://www.sigaventures.com/sitemap-index.xml
