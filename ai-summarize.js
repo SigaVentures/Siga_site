@@ -29,9 +29,9 @@
 
  function injectStyles() {
  var css = "" +
- "#sv-ai-widget{position:fixed;left:20px;bottom:20px;z-index:99999;" +
+ "#sv-ai-widget{position:fixed;right:20px;bottom:100px;z-index:99999;" +
  "font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;" +
- "align-items:flex-start;gap:10px;}" +
+ "align-items:flex-end;gap:10px;}" +
  "#sv-ai-widget .sv-ai-panel{display:none;flex-direction:column;gap:8px;" +
  "background:#131316;border:1px solid #232327;border-radius:14px;padding:12px;" +
  "box-shadow:0 12px 32px rgba(0,0,0,.45);min-width:220px;}" +
@@ -49,7 +49,7 @@
  "padding:12px 18px;font-size:13.5px;font-weight:600;cursor:pointer;" +
  "box-shadow:0 8px 24px rgba(255,78,31,.35);font-family:inherit;}" +
  "#sv-ai-widget .sv-ai-toggle:hover{filter:brightness(1.08);}" +
- "@media (max-width:640px){#sv-ai-widget{left:14px;bottom:14px;}" +
+ "@media (max-width:640px){#sv-ai-widget{right:14px;bottom:90px;}" +
  "#sv-ai-widget .sv-ai-panel{min-width:190px;}}";
  var style = document.createElement("style");
  style.textContent = css;

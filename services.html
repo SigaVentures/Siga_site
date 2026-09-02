@@ -72,14 +72,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background:rgba(11,11,13,.7); backdrop-filter:blur(14px);
     border-bottom:1px solid var(--line);
   }
-  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1240px; margin:0 auto;}
-  .logo{display:flex; align-items:center; gap:10px; font-family:'Archivo',sans-serif; font-weight:700; font-size:19px;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; max-width:1320px; margin:0 auto;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Archivo',sans-serif; font-weight:700; font-size:19px; white-space:nowrap; flex-shrink:0;}
   .logo img{width:42px;height:42px;border-radius:50%;object-fit:cover;clip-path:circle(50%);background:#fff;padding:2px;}
   .navlinks{
     display:flex;
-    gap:36px;
-    font-size:14.5px;
+    align-items:center;
+    gap:24px;
+    font-size:14px;
     color:var(--text-dim);
+    flex-wrap:nowrap;
+}
+
+.navlinks a{
+    white-space:nowrap;
+}
+
+.navlinks .btn-primary{
+    flex-shrink:0;
+    white-space:nowrap;
 }
 
 .navlinks a:hover{
@@ -93,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     cursor:pointer;
 }
 
-@media(max-width:900px){
+@media(max-width:1080px){
 
     .menu-toggle{
     display:block;
@@ -111,6 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         width:100%;
         background:#0b0b0d;
         flex-direction:column;
+        align-items:flex-start;
         padding:30px;
         gap:22px;
         border-top:1px solid var(--line);
@@ -360,6 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="#why-us">Why Us</a>
 <a href="#process">Process</a>
 <a href="blog.html">Blogs</a>
+<a href="resources.html">Resources</a>
 <a href="#faq">FAQ</a>
 <a class="btn btn-primary" href="contact.html">Book Free Call</a>
 </div>
@@ -389,6 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="#services">Why Us</a></li>
 <li><a href="#process">Process</a></li>
 <li><a href="blog.html">Blogs</a></li>
+<li><a href="resources.html">Resources</a></li>
 <li><a href="#faq">FAQ</a></li>
 <li><a href="contact.html">Contact</a></li>
 </ul>

@@ -259,6 +259,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .faq-cta h3{font-size:26px; margin-bottom:10px;}
   .faq-cta p{color:var(--text-dim); margin-bottom:26px;}
 
+  /* PROJECTS (3D showcase) */
+  .projects-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:900px){.projects-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:620px){.projects-grid{grid-template-columns:1fr;}}
+  .project-card{
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    background:var(--surface); display:flex; flex-direction:column;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .project-card:hover{transform:translateY(-6px); border-color:var(--accent); box-shadow:0 20px 40px -16px rgba(255,78,31,.35);}
+  .project-thumb{
+    height:190px; position:relative; display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .project-thumb::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.10), transparent 55%),
+      linear-gradient(135deg, var(--g1), var(--g2));
+  }
+  .project-thumb::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:radial-gradient(circle at 50% 40%, black, transparent 75%);
+  }
+  .project-card:nth-child(1) .project-thumb{--g1:#3a1a10; --g2:#ff4e1f;}
+  .project-card:nth-child(2) .project-thumb{--g1:#241a3a; --g2:#7c6cff;}
+  .project-card:nth-child(3) .project-thumb{--g1:#102a24; --g2:#1fbfa0;}
+  .project-badge{
+    position:absolute; top:14px; left:14px; z-index:1;
+    font-family:'Geist Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    background:rgba(11,11,13,.55); border:1px solid rgba(255,255,255,.16); color:#fff;
+    padding:5px 10px; border-radius:100px; backdrop-filter:blur(6px);
+  }
+  .project-body{padding:26px 26px 28px; display:flex; flex-direction:column; flex:1;}
+  .project-body h3{font-size:19px; margin-bottom:10px;}
+  .project-body p{color:var(--text-dim); font-size:14px; line-height:1.6; margin-bottom:20px; flex:1;}
+  .project-link{
+    display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:var(--accent);
+  }
+  .project-link svg{transition:transform .2s ease;}
+  .project-card:hover .project-link svg{transform:translate(3px,-3px);}
+
   /* FOOTER */
   footer{border-top:1px solid var(--line); padding-top:100px; position:relative; overflow:hidden;}
   .footer-giant{
@@ -362,10 +408,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a class="logo" href="index.html"><img alt="SIGA Ventures" decoding="async" height="300" loading="lazy" src="logo.png" width="400"/>SIGA Ventures</a>
 <div class="nav-links">
 <a href="index.html">Home</a>
+<a href="resources.html">Resources</a>
 <a class="btn btn-primary" href="contact.html">Book Free Call</a>
 </div>
 </nav>
 </header><main id="top"><section style="padding:160px 0 100px;"><div class="wrap"><div class="section-head"><div class="eyebrow">Case Studies</div><h1>Work That Moved the Needle</h1><p>We measure our work by outcomes, not deliverables. Here's a look at the kind of impact we've driven for brands like A1 Furniture, Brickworld, Ideal Properties, KK Packaging, Likitha, Wassi and Ather.</p></div><div class="services-grid" style="gap:22px;margin-bottom:50px;"><div class="service-card"><h3>+430% SEO Growth</h3><p>Organic traffic growth delivered in 90 days for a client through technical SEO and content strategy.</p></div><div class="service-card"><h3>50+ Reels Edited</h3><p>Short-form social content produced and edited to keep brands consistently visible across platforms.</p></div><div class="service-card"><h3>7+ Brands Scaled</h3><p>New client brands onboarded and grown through a mix of paid media, SEO and brand systems.</p></div></div>
+
   <p style="margin-top:24px"><a href="ev-brand-case-study.html">Read the EV brand case study →</a></p><p style="margin-top:24px">Read the full EV brand case study, or get in touch to discuss what a similar engagement could look like for you.</p><a class="btn btn-primary" href="contact.html" style="margin-top:20px;display:inline-flex;">Book a Free Strategy Call</a>
 </div></section></main>
 <script>
