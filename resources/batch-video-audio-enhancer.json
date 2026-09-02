@@ -1,0 +1,310 @@
+{
+  "name": "Batch Video Audio Enhancer",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f8485f58-a36c-4a1f-9d4a-55ecf7f59759",
+      "name": "Start (Manual Trigger)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1248,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "inputDir",
+              "value": "E:\\Audio Enhance\\input video",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "outputDir",
+              "value": "E:\\Audio Enhance\\output video",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "tmpDir",
+              "value": "E:\\Audio Enhance\\temp audio",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f89da194-73e3-43a2-8980-bd74f4f0097a",
+      "name": "Config (EDIT THESE PATHS)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1024,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=dir /b \"E:\\Audio Enhance\\input video\\*.mp4\""
+      },
+      "id": "44d62887-e035-41a7-8144-e7812358e317",
+      "name": "List Video Files",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputDir = $('Config (EDIT THESE PATHS)').first().json.inputDir;\n\nconst output = $json.stdout\n  .trim()\n  .split(/\\r?\\n/)\n  .filter(name => name.trim() !== '')\n  .map(name => ({\n    fileName: name.trim(),\n    filePath: `${inputDir}\\\\${name.trim()}`\n  }));\n\nreturn output.map(item => ({ json: item }));"
+      },
+      "id": "03008249-0e7c-48f3-81af-78c0fac27776",
+      "name": "Build File List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -592,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a164ee80-1d73-4474-9c57-3b0fb944fba4",
+      "name": "Loop Videos",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -368,
+        64
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a6d741ce-115a-4b82-9325-4ac4dd7f1667",
+      "name": "Finished",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=\"E:\\ffmpeg-9.0.1-essentials_build\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe\" -y -i \"{{$json.filePath}}\" -vn -ac 2 -ar 44100 -c:a pcm_s16le \"{{$json.outputPath}}\""
+      },
+      "id": "59cf9e6a-ddfe-4134-b80a-0c815afe71ac",
+      "name": "Extract Audio",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        32,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=\"E:\\ffmpeg-9.0.1-essentials_build\\ffmpeg-9.0.1-essentials_build\\bin\\ffmpeg.exe\" -y -i \"{{$('Build Audio Path').item.json.outputPath}}\" -af \"afftdn=nf=-25,highpass=f=80,lowpass=f=12000,loudnorm=I=-16:TP=-1.5:LRA=11\" -c:a pcm_s16le \"{{$('Build Audio Path').item.json.outputPath.replace('_raw.wav','_enhanced.wav')}}\""
+      },
+      "id": "a9600a46-d965-4d85-b717-e614d0514175",
+      "name": "Enhance Audio",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        208,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'E:\\\\ffmpeg-9.0.1-essentials_build\\\\ffmpeg-9.0.1-essentials_build\\\\bin\\\\ffmpeg.exe -y -i \"' + $('Build Audio Path').item.json.filePath + '\" -i \"' + $('Build Audio Path').item.json.outputPath.replace('_raw.wav','_enhanced.wav') + '\" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -shortest \"E:\\\\Audio Enhance\\\\output video\\\\' + $('Build Audio Path').item.json.fileName.replace(/\\.mp4$/i,'_enhanced.mp4') + '\"' }}"
+      },
+      "id": "d7b5db4f-01a1-40c3-b218-bef334a94e9a",
+      "name": "Remux Video (replace audio)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        400,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=cmd /c del /f /q \"{{ $('Build Audio Path').item.json.outputPath }}\" \"{{ $('Build Audio Path').item.json.outputPath.replace('_raw.wav','_enhanced.wav') }}\""
+      },
+      "id": "39937ab5-2e33-48e7-8f1d-e2709e5d75b3",
+      "name": "Cleanup Temp Files",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        608,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "218ec078-6c11-4625-8119-c18149552847",
+              "name": "outputPath",
+              "value": "={{ 'E:\\\\Audio Enhance\\\\temp audio\\\\' + $json.fileName.replace(/\\.mp4$/i, '_raw.wav') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -176,
+        208
+      ],
+      "id": "cfb3d4d3-0b38-489d-99e9-854d3f270ae6",
+      "name": "Build Audio Path"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start (Manual Trigger)": {
+      "main": [
+        [
+          {
+            "node": "Config (EDIT THESE PATHS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build File List": {
+      "main": [
+        [
+          {
+            "node": "Loop Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Videos": {
+      "main": [
+        [
+          {
+            "node": "Finished",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Audio Path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config (EDIT THESE PATHS)": {
+      "main": [
+        [
+          {
+            "node": "List Video Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Video Files": {
+      "main": [
+        [
+          {
+            "node": "Build File List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Audio": {
+      "main": [
+        [
+          {
+            "node": "Enhance Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enhance Audio": {
+      "main": [
+        [
+          {
+            "node": "Remux Video (replace audio)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remux Video (replace audio)": {
+      "main": [
+        [
+          {
+            "node": "Cleanup Temp Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Audio Path": {
+      "main": [
+        [
+          {
+            "node": "Extract Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cleanup Temp Files": {
+      "main": [
+        [
+          {
+            "node": "Loop Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "37a0bc52-986b-4967-b471-4e6e6165d162",
+  "meta": {
+    "instanceId": "10e9ebc1b9f52ce9e73e1aaf3ca63bac7986cf900fc18912c3b689b39b234776"
+  },
+  "nodeGroups": [],
+  "id": "3v0Ss3KIX7uKEQNH",
+  "tags": []
+}
