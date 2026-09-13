@@ -91,15 +91,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1240px; margin:0 auto;}
  .logo{display:flex; align-items:center; gap:10px; font-family:'Archivo',sans-serif; font-weight:700; font-size:19px;}
  .logo img{width:42px;height:42px;border-radius:50%;object-fit:cover;clip-path:circle(50%);background:#fff;padding:2px;}
- .navlinks{
- display:flex;
- gap:36px;
- font-size:14.5px;
- color:var(--text-dim);
+ .navlinks, .nav-links {
+ display: flex;
+ align-items: center;
+ gap: 26px;
+ font-size: 14.5px;
+ color: var(--text-dim);
 }
 
-.navlinks a:hover{
- color:var(--text);
+.navlinks a, .nav-links a {
+ display: inline-flex;
+ align-items: center;
+ line-height: 1;
+ transition: color 0.2s ease;
+}
+
+.navlinks a:hover, .nav-links a:hover {
+ color: var(--text);
+}
+
+.navlinks a.active, .nav-links a.active {
+ color: var(--accent);
+ font-weight: 600;
 }
 
 .menu-toggle{
@@ -1128,7 +1141,6 @@ document.querySelectorAll(".navlinks a").forEach(link => {
  });
 });
 </script>
-<script src="ai-summarize.js"></script>
 <script type="text/javascript">
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];

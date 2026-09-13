@@ -56,7 +56,13 @@
  document.head.appendChild(style);
  }
 
+ function isHomePage() {
+ var path = window.location.pathname;
+ return path === "/" || path === "/index.html" || path.endsWith("/index.html") || path === "";
+ }
+
  function init() {
+ if (isHomePage()) return;
  injectStyles();
  var prompt = buildPrompt();
 
