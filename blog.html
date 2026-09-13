@@ -427,7 +427,13 @@
  </a>
  <div class="navlinks">
  <a href="index.html">Home</a>
-
+ <a href="services.html">Services</a>
+ <a href="video-editing.html">Editing</a>
+ <a href="work.html">Work</a>
+ <a href="resources.html">Resources</a>
+ <a href="blog.html" class="active">Blogs</a>
+ <a href="faq.html">FAQ</a>
+ <a href="contact.html">Contact</a>
  <a class="btn btn-primary" href="contact.html">Book Free Call</a>
  </div>
  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -447,7 +453,43 @@
  </div>
 
  <!-- SEARCH AND FILTER CONTROLS -->
+ <div class="filter-bar">
+ <div class="search-box">
+ <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+ <input type="text" id="searchInput" placeholder="Search guides, strategies, case studies..." onkeyup="filterArticles()" />
+ </div>
+ <div class="category-pills">
+ <button class="cat-btn active" onclick="selectCategory('all', this)">All Topics</button>
+ <button class="cat-btn" onclick="selectCategory('SEO', this)">SEO</button>
+ <button class="cat-btn" onclick="selectCategory('Paid Ads', this)">Paid Ads</button>
+ <button class="cat-btn" onclick="selectCategory('AI & Automation', this)">AI &amp; Automation</button>
+ <button class="cat-btn" onclick="selectCategory('Case Study', this)">Case Studies</button>
+ </div>
+ </div>
 
+ </div>
+ </section>
+
+ <!-- FEATURED ARTICLE HERO CARD -->
+ <section class="featured-section">
+ <div class="wrap">
+ <div class="featured-card">
+ <div>
+ <div class="featured-badge">Featured Strategy Guide</div>
+ <h2>What is SEO? A Beginner's Guide to Search Engine Optimization</h2>
+ <p>Master organic search fundamentals, technical SEO best practices, high-converting keyword research, and actionable strategies that drive compounding traffic.</p>
+ <div class="meta-row">
+ <div class="meta-item"><span>⏱</span> 7 min read</div>
+ <div class="meta-item"><span>📅</span> Updated Sep 2026</div>
+ <div class="meta-item"><span>📁</span> Search Engine Optimization</div>
+ </div>
+ <a href="what-is-seo.html" class="btn btn-primary">Read Complete Guide →</a>
+ </div>
+ <div class="featured-preview">
+ <div class="icon-box">🚀</div>
+ <div class="preview-tag">ORGANIC GROWTH PLAYBOOK</div>
+ </div>
+ </div>
  </div>
  </section>
 
@@ -593,11 +635,91 @@
  </div>
  </section>
 
+ <!-- NEWSLETTER / CTA BOX -->
+ <section class="newsletter-section">
+ <div class="wrap">
+ <div class="newsletter-box">
+ <div class="eyebrow" style="justify-content: center;">Stay Ahead</div>
+ <h3>Get Growth Playbooks Delivered Direct to Your Inbox</h3>
+ <p>Subscribe to receive actionable digital marketing insights, AI automation blueprints, and paid ad strategies every month.</p>
+ <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to SIGA Ventures Insights!');">
+ <input type="email" placeholder="Enter your business email" required />
+ <button type="submit" class="btn btn-primary">Subscribe Now</button>
+ </form>
+ </div>
+ </div>
+ </section>
 
  </main>
 
  <!-- FOOTER -->
-
+ <footer>
+ <div class="wrap">
+ <div class="footer-giant">Scale Your Brand <span class="accent">Beyond Limits.</span></div>
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <a class="logo" href="index.html">
+ <img src="logo.png" alt="SIGA Ventures" width="40" height="40" />
+ <span>SIGA Ventures</span>
+ </a>
+ <p>SIGA Ventures is a modern growth agency helping brands scale through SEO, performance marketing, branding, and AI automation.</p>
+ <div class="social-row">
+ <a href="https://www.instagram.com/sigaventures/" target="_blank" rel="noopener">IG</a>
+ <a href="https://www.facebook.com/profile.php?id=61591454728667#" target="_blank" rel="noopener">FB</a>
+ </div>
+ </div>
+ <div class="footer-col">
+ <h5>Quick Links</h5>
+ <ul>
+ <li><a href="index.html">Home</a></li>
+ <li><a href="about.html">About</a></li>
+ <li><a href="services.html">Services</a></li>
+ <li><a href="work.html">Work</a></li>
+ <li><a href="careers.html">Careers</a></li>
+ <li><a href="blog.html">Blog</a></li>
+ <li><a href="faq.html">FAQ</a></li>
+ <li><a href="contact.html">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h5>Service Areas</h5>
+ <ul>
+ <li><a href="digital-marketing-chennai.html">Digital Marketing Chennai</a></li>
+ <li><a href="digital-marketing-hosur.html">Digital Marketing Hosur</a></li>
+ <li><a href="digital-marketing-pondicherry.html">Digital Marketing Pondicherry</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h5>Services</h5>
+ <ul>
+ <li><a href="seo-services.html">SEO Optimization</a></li>
+ <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+ <li><a href="web-development.html">Web Development</a></li>
+ <li><a href="branding.html">Branding</a></li>
+ <li><a href="performance-marketing.html">Performance Marketing</a></li>
+ <li><a href="ai-automation.html">AI Automation</a></li>
+ <li><a href="google-ads.html">Google Ads</a></li>
+ <li><a href="meta-ads.html">Meta Ads</a></li>
+ </ul>
+ </div>
+ <div class="footer-contact footer-col">
+ <h5>Get In Touch</h5>
+ <p>Email</p>
+ <span class="email">sigaventures@gmail.com</span>
+ <p>Phone</p>
+ <span class="email">+91 94437 44312</span>
+ <a class="btn btn-primary" href="contact.html" style="margin-top:6px;">Book a Free Call</a>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <div>© 2026 SIGA Ventures. All rights reserved. Premium Digital Marketing Agency — SEO, Web Design, Branding &amp; AI Automation.</div>
+ <div>
+ <a href="privacy-policy.html">Privacy Policy</a>
+ <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+ </div>
+ </div>
+ </div>
+ </footer>
 
  <!-- JAVASCRIPT FOR MOBILE MENU & LIVE SEARCH FILTER -->
  <script>
@@ -614,12 +736,13 @@
  activeCategory = category;
  const pills = document.querySelectorAll('.cat-btn');
  pills.forEach(btn => btn.classList.remove('active'));
- element.classList.add('active');
+ if (element) element.classList.add('active');
  filterArticles();
  }
 
  function filterArticles() {
- const searchInput = document.getElementById('searchInput').value.toLowerCase().trim();
+ const searchInputElem = document.getElementById('searchInput');
+ const searchInput = searchInputElem ? searchInputElem.value.toLowerCase().trim() : '';
  const articles = document.querySelectorAll('#articlesGrid .article-card');
 
  articles.forEach(article => {
